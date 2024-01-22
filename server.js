@@ -5,19 +5,14 @@ import express from 'express';
 const app = express();
 import morgan from 'morgan';
 import mongoose from 'mongoose';
-import loadCharacters from './models/CharactersModel.js';
 import { body, validationResult } from 'express-validator';
 import { validateTest } from './middleware/validationMiddleware.js';
 import cookieParser from 'cookie-parser';
 
 
-
-
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
-
-
 
 app.use(morgan('dev'));
 app.use(cookieParser());
@@ -27,6 +22,7 @@ app.use(express.json());
 
 import characterRouter from './routes/characterRouter.js';
 import authRouter from './routes/authRouter.js';
+import userRouter from './routes/userRouter.js';
 
 // Middleware
 
@@ -34,6 +30,7 @@ import { authenticateUser } from './middleware/authMiddleware.js';
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1', authenticateUser, characterRouter);
+app.use('/api/v1/users', authenticateUser, userRouter);
 
 
 app.get('/', (req,res) => {
@@ -75,7 +72,3 @@ try {
   console.log(error);
   process.exit(1);
 }
-
-
-
-

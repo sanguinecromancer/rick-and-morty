@@ -13,8 +13,6 @@ export const register = async (req, res) => {
 		const hashedPassword = await hashPassword(req.body.password);
 		req.body.password = hashedPassword;
 
-		console.log(req);
-
 		const user = await User.create(req.body);
 		res.status(201).json({ msg: 'user created' });
 	
@@ -49,4 +47,12 @@ export const login = async (req, res) => {
 		res.status(500).json({ msg: 'server error'});
 	}
 }; 
+
+export const logout = (req, res) => {
+	res.cookie('token', 'logout', {
+	  httpOnly: true,
+	  expires: new Date(Date.now()),
+	});
+	res.status(200).json({ msg: 'user logged out!' });
+};
 

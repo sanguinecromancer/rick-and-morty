@@ -4,10 +4,10 @@ import { authenticateUser } from '../middleware/authMiddleware.js';
 const router = Router();
 
 import {
-   getAllFavoriteCharacters,
-   getFavoriteCharacter,
-   addToFavorites,
-   removeFromFavorites,
+	getAllFavoriteCharacters,
+	getFavoriteCharacter,
+	addToFavorites,
+	removeFromFavorites,
 } from '../controllers/characterController.js';
 import { validateIdParam } from '../middleware/validationMiddleware.js';
 import { loadCharacters, getCharacters } from '../models/CharactersModel.js';

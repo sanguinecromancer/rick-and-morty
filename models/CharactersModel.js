@@ -1,15 +1,3 @@
-// async function fetchCharacters() {
-//     try {
-//       const response = await fetch(
-//         'https://rickandmortyapi.com/api/character'
-//       );
-//       const cartData = await response.json();
-//       console.log(cartData);
-//       return cartData;
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
 
 let characters = [];
 
