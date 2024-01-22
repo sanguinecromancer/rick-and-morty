@@ -33,19 +33,6 @@ app.use('/api/v1', authenticateUser, characterRouter);
 app.use('/api/v1/users', authenticateUser, userRouter);
 
 
-app.get('/', (req,res) => {
-    res.send('Hello world');
-});
-
-app.post(
-  '/api/v1/test',
-  [body('name').notEmpty().withMessage('name is required')],
-  validateTest,
-  (req, res) => {
-    const { name } = req.body;
-    res.json({ msg: `hello ${name}` });
-  }
-);
 
 // 404 response
 

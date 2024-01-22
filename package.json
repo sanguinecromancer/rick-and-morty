@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "setup-project": "npm i && cd rick-morty-client && npm i",
-    "dev": "nodemon server.js"
+    "server": "nodemon server",
+    "client": "cd rick-morty-client && npm run dev",
+    "dev": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\""
   },
   "keywords": [],
   "author": "",
@@ -14,7 +16,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.37.3",
-    "concurrently": "^8.0.1",
+    "concurrently": "^8.2.2",
     "cookie-parser": "^1.4.6",
     "datauri": "^4.1.0",
     "dayjs": "^1.11.9",
