@@ -1,4 +1,4 @@
-
+import 'express-async-errors';
 import * as dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
@@ -8,7 +8,7 @@ import mongoose from 'mongoose';
 import loadCharacters from './models/CharactersModel.js';
 import { body, validationResult } from 'express-validator';
 import { validateTest } from './middleware/validationMiddleware.js';
-
+import cookieParser from 'cookie-parser';
 
 
 
@@ -20,12 +20,21 @@ if (process.env.NODE_ENV === 'development') {
 
 
 app.use(morgan('dev'));
+app.use(cookieParser());
 app.use(express.json());
 
 // Routes
 
 import characterRouter from './routes/characterRouter.js';
-app.use('/api/v1', characterRouter);
+import authRouter from './routes/authRouter.js';
+
+// Middleware
+
+import { authenticateUser } from './middleware/authMiddleware.js';
+
+app.use('/api/v1/auth', authRouter);
+app.use('/api/v1', authenticateUser, characterRouter);
+
 
 app.get('/', (req,res) => {
     res.send('Hello world');
@@ -40,9 +49,6 @@ app.post(
     res.json({ msg: `hello ${name}` });
   }
 );
-
-
-
 
 // 404 response
 

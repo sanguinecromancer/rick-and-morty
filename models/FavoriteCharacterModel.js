@@ -2,7 +2,11 @@ import mongoose from 'mongoose';
 
 const FavoriteCharacterSchema = new mongoose.Schema(
   {
-    id: Number
+    id: Number,
+    createdBy: {
+      type: mongoose.Types.ObjectId,
+      ref: 'User'
+    }
   },
   { timestamps: true }
 );
