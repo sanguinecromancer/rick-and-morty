@@ -2,6 +2,7 @@ export { default as DashboardLayout } from './DashboardLayout';
 export { default as Admin } from './Admin';
 export { default as AddCharacter } from './AddCharacter';
 export { default as AllCharacters } from './AllCharacters';
+export { default as FavoriteCharacters } from './FavoriteCharacters';
 
 export { default as DeleteCharacter } from './DeleteCharacter';
 export { default as EditCharacter } from './EditCharacter';

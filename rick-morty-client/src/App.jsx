@@ -1,9 +1,12 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { HomeLayout, Landing, Register, Login, DashboardLayout,
- Error, AllCharacters, AddCharacter, EditCharacter, DeleteCharacter, Profile,
+ Error, FavoriteCharacters, AllCharacters, Profile,
  Stats, Admin
 } from './pages';
 import { action as registerAction } from './pages/Register';
+import { action as loginAction } from './pages/Login';
+import { loader as dashboardLoader } from './pages/DashboardLayout';
+import { loader as favoriteCharactersLoader } from './pages/FavoriteCharacters';
 
 export const checkDefaultTheme = () => {
   const isDarkTheme = localStorage.getItem('darkTheme') === 'true';
@@ -30,23 +33,22 @@ const router = createBrowserRouter([
       },
       {
         path: '/login',
-        element: <Login />
+        element: <Login />,
+        action: loginAction
       },
       {
         path: '/dashboard',
-        element: <DashboardLayout />,
+        element: <DashboardLayout/>,
+        loader: dashboardLoader,
         children: [
-          {
-            index: true,
-            element: <AddCharacter />
-          },
-          {
-            path: 'stats',
-            element: <Stats />
-          },
           {
             path: 'all-characters',
             element: <AllCharacters />
+          },
+          {
+            path: 'favorite-characters',
+            element: <FavoriteCharacters />,
+            loader: favoriteCharactersLoader
           },
           {
             path: 'profile',

@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-app.use(morgan('dev'));
+
 app.use(cookieParser());
 app.use(express.json());
 
@@ -41,14 +41,13 @@ app.use('*', (req, res) => {
 });
 
 // error middleware
+
 app.use((err, req, res, next) => {
   console.log(err);
-  res.status(500).json({ msg: 'something went wrong' });
+  res.status(err.statusCode).json({ msg: err.message });
 });
 
 const port = process.env.PORT || 5100;
-
-//await loadCharacters();
 
 try {
   await mongoose.connect(process.env.MONGO_URL);
