@@ -25,7 +25,7 @@ const FavoriteCharacters = () => {
   return (
     <FavoriteCharactersContext.Provider value={{ data }}>
     <>
-    <h1>Favorite Characters</h1>
+      <h4>Favorite Characters</h4>
      
       <CharactersContainer />
     </>
