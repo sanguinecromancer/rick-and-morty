@@ -1,12 +1,14 @@
 import CharacterItem from './CharacterItem';
 import Wrapper from '../assets/wrappers/CharactersContainer';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { useFavoriteCharactersContext } from '../pages/FavoriteCharacters';
+
 
 const CharactersContainer = () => {
-  const { data } = useFavoriteCharactersContext();
-  const { favoriteCharacters } = data;
-  if (favoriteCharacters.length === 0) {
+
+  const { characterItems, total } = useSelector((store) => store.characters);
+  const dispatch = useDispatch();
+  if (characterItems.length === 0) {
     return (
       <Wrapper>
         <h2>No characters to display...</h2>
@@ -16,8 +18,9 @@ const CharactersContainer = () => {
 
   return (
     <Wrapper>
+      <p>Total: {total} </p>
       <div className='characters'>
-        {favoriteCharacters.map((character) => {
+        {characterItems.map((character) => {
           return <CharacterItem key={character._id} {...character} />;
         })}
       </div>

@@ -1,15 +1,24 @@
 import Wrapper from "../assets/wrappers/Navbar";
 import { FaAlignLeft } from 'react-icons/fa';
-import { useDashboardContext } from '../pages/DashboardLayout';
+//import { useDashboardContext } from '../pages/DashboardLayout';
 import LogoutContainer from './LogoutContainer';
 import ThemeToggle from './ThemeToggle';
+//import { useSelector, useDispatch } from 'react-redux';
+//import { openSmallSideBar, closeSmallSideBar } from '../features/dashboard/dashboardSlice';
 
 const Navbar = () => {
-  const { toggleSidebar } = useDashboardContext();
+  // const dispatch = useDispatch();
+  // const x = useSelector((store) => store);
+  // console.log(x);
+
+  // const { toggleSidebar } = useDashboardContext();
   return (
     <Wrapper>
       <div className='nav-center'>
-        <button type='button' className='toggle-btn' onClick={toggleSidebar}>
+        <button type='button' 
+        // className='toggle-btn'  
+        // onClick={() => dispatch(openSmallSideBar())}
+        >
           <FaAlignLeft />
         </button>
         <div>
@@ -17,7 +26,7 @@ const Navbar = () => {
           <h4 className='logo-text'>dashboard</h4>
         </div>
         <div className='btn-container'>
-          <ThemeToggle />
+           <ThemeToggle /> 
           <LogoutContainer />
         </div>
       </div>

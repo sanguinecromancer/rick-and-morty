@@ -1,11 +1,34 @@
 import { FaUserCircle, FaCaretDown } from 'react-icons/fa';
 import Wrapper from '../assets/wrappers/LogoutContainer';
 import { useState } from 'react';
-import { useDashboardContext } from '../pages/DashboardLayout';
+import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router-dom';
+import customFetch from '../utils/customFetch';
+import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
+
+//import { useDashboardContext } from '../pages/DashboardLayout';
 
 const LogoutContainer = () => {
   const [showLogout, setShowLogout] = useState(false);
-  const { user, logoutUser } = useDashboardContext();
+
+  const navigate = useNavigate();
+  // const loader = async () => {
+  //   try {
+  //     const { data } = await customFetch('/users/current-user');
+  //     return data;
+  //   } catch (error) {
+  //     return redirect('/');
+  //   }
+  // };
+    const logoutUser = async () => {
+    navigate('/');
+    await customFetch.get('/auth/logout');
+    toast.success('Logging out...');
+  };
+
+ // const { user } = useLoaderData();
+  const user = "john";
+  console.log(user);
 
   return (
     <Wrapper>
@@ -24,7 +47,10 @@ const LogoutContainer = () => {
         <FaCaretDown />
       </button>
       <div className={showLogout ? 'dropdown show-dropdown' : 'dropdown'}>
-        <button type='button' className='dropdown-btn' onClick={logoutUser}>
+        <button type='button' 
+        className='dropdown-btn' 
+         onClick={logoutUser}
+        >
           logout
         </button>
       </div>

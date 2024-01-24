@@ -1,4 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { useEffect } from 'react';
 import { HomeLayout, Landing, Register, Login, DashboardLayout,
  Error, FavoriteCharacters, AllCharacters, Profile,
  Stats, Admin
@@ -6,7 +7,11 @@ import { HomeLayout, Landing, Register, Login, DashboardLayout,
 import { action as registerAction } from './pages/Register';
 import { action as loginAction } from './pages/Login';
 import { loader as dashboardLoader } from './pages/DashboardLayout';
-import { loader as favoriteCharactersLoader } from './pages/FavoriteCharacters';
+//import { loader as favoriteCharactersLoader } from './pages/FavoriteCharacters';
+import { Navbar } from "./components";
+import { useSelector, useDispatch } from 'react-redux';
+import { calculateTotalFavorites } from "./features/characters/characterSlice";
+
 
 export const checkDefaultTheme = () => {
   const isDarkTheme = localStorage.getItem('darkTheme') === 'true';
@@ -48,7 +53,7 @@ const router = createBrowserRouter([
           {
             path: 'favorite-characters',
             element: <FavoriteCharacters />,
-            loader: favoriteCharactersLoader
+         //  loader: favoriteCharactersLoader
           },
           {
             path: 'profile',
@@ -67,7 +72,14 @@ const router = createBrowserRouter([
 
 const App = () => {
 
-    return <RouterProvider router={router} />;
+  const { characterItems } = useSelector((store) => store.characters);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(calculateTotalFavorites());
+  }, [characterItems]);
+
+  return <RouterProvider router={router} />;
   
 }
 export default App

@@ -17,21 +17,18 @@ export const loader = async ({ request }) => {
   }
 };
 
-const FavoriteCharactersContext = createContext();
 
 const FavoriteCharacters = () => {
-  const { data } = useLoaderData();
-
+ // const { data } = useLoaderData();
   return (
-    <FavoriteCharactersContext.Provider value={{ data }}>
-    <>
-      <h4>Favorite Characters</h4>
-     
-      <CharactersContainer />
-    </>
-    </FavoriteCharactersContext.Provider>
+  <div>
+      <>
+        <h4>Favorite Characters</h4>
+        <CharactersContainer />
+      </>
+    </div>
   );
 };
 
-export const useFavoriteCharactersContext = () => useContext(FavoriteCharactersContext);
+//export const useFavoriteCharactersContext = () => useContext(FavoriteCharactersContext);
 export default FavoriteCharacters;

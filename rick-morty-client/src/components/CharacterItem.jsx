@@ -1,12 +1,11 @@
 
 import { Link, Form } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/CharacterItem';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeFromFavorites } from '../features/characters/characterSlice';
 
-const CharacterItem = ({
-  _id,
-    createdBy
-}) => {
-
+const CharacterItem = ({_id, createdBy }) => {
+  const dispatch = useDispatch();
   return (
     <Wrapper>
       <header>
@@ -22,8 +21,10 @@ const CharacterItem = ({
         </div>
         <footer className='actions'>
           <Form>
-            <button type='submit' className='btn delete-btn'>
-              Delete
+            <button type='submit' className='btn delete-btn' 
+               onClick={() => {dispatch(removeFromFavorites(_id))}}
+              >
+                Delete
             </button>
           </Form>
         </footer>
