@@ -6,9 +6,9 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const CharactersContainer = () => {
 
-  const { characterItems, total } = useSelector((store) => store.characters);
+  const { favoriteCharacterItems, total } = useSelector((store) => store.favoriteCharacterItems);
   const dispatch = useDispatch();
-  if (characterItems.length === 0) {
+  if (favoriteCharacterItems?.length === 0) {
     return (
       <Wrapper>
         <h2>No characters to display...</h2>
@@ -20,7 +20,7 @@ const CharactersContainer = () => {
     <Wrapper>
       <p>Total: {total} </p>
       <div className='characters'>
-        {characterItems.map((character) => {
+        {favoriteCharacterItems?.map((character) => {
           return <CharacterItem key={character._id} {...character} />;
         })}
       </div>

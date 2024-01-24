@@ -6,11 +6,11 @@ import { HomeLayout, Landing, Register, Login, DashboardLayout,
 } from './pages';
 import { action as registerAction } from './pages/Register';
 import { action as loginAction } from './pages/Login';
-import { loader as dashboardLoader } from './pages/DashboardLayout';
+//import { loader as dashboardLoader } from './pages/DashboardLayout';
 //import { loader as favoriteCharactersLoader } from './pages/FavoriteCharacters';
 import { Navbar } from "./components";
 import { useSelector, useDispatch } from 'react-redux';
-import { calculateTotalFavorites } from "./features/characters/characterSlice";
+import { calculateTotalFavorites, getFavoriteCharacterItems } from "./features/characters/characterSlice";
 
 
 export const checkDefaultTheme = () => {
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
       {
         path: '/dashboard',
         element: <DashboardLayout/>,
-        loader: dashboardLoader,
+        //loader: dashboardLoader,
         children: [
           {
             path: 'all-characters',
@@ -72,12 +72,22 @@ const router = createBrowserRouter([
 
 const App = () => {
 
-  const { characterItems } = useSelector((store) => store.characters);
+  const { favoriteCharacterItems, isLoading } = useSelector((store) => store.favoriteCharacterItems);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(calculateTotalFavorites());
-  }, [characterItems]);
+  }, [favoriteCharacterItems]);
+
+  useEffect(() => {
+    dispatch(getFavoriteCharacterItems());
+  }, []);
+
+  if (isLoading) {
+    return <div className='loading'>
+      <h2>Loading...</h2>
+    </div>
+  }
 
   return <RouterProvider router={router} />;
   

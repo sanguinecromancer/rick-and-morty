@@ -13,24 +13,23 @@ import CharactersContainer from '../components/CharactersContainer';
 
 const DashboardContext = createContext();
 
-export const loader = async () => {
-  try {
-    const { data } = await customFetch('/users/current-user');
-    return data;
-  } catch (error) {
-    return redirect('/');
-  }
-};
+// export const loader = async () => {
+//   try {
+//     const { data } = await customFetch('/users/current-user');
+//     return data;
+//   } catch (error) {
+//     return redirect('/');
+//   }
+// };
 
 
 const DashboardLayout = () => {
  const { smallSideBarIsOpen } = useSelector((store) => store.dashboard);
-  console.log('got here');
   // useEffect(() => {
   //   dispatch(calculateTotalFavorites());
   // }, [characterItems]);
-  const { user } = useLoaderData();
-  console.log(user);
+  // const { user } = useLoaderData();
+  // console.log(user);
    const navigate = useNavigate();
   // const [showSidebar, setShowSidebar] = useState(false);
   // const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme);
