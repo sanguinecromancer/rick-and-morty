@@ -2,7 +2,7 @@
 import { Link, Form } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/CharacterItem';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToFavoritesRequest } from '../features/characters/favoriteCharacterSlice';
+import { addToFavoritesRequest, removeFromFavorites } from '../features/characters/favoriteCharacterSlice';
 //import { favoriteIds } from '../features/characters/favoriteCharacterSlice';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,15 +25,24 @@ const CharacterItem = ({id, name}) => {
           <div className={`status ${name}`}>{name}</div>
         </div>
         <footer className='actions'>
-          {!favoriteIds.includes(id) &&
+          {!favoriteIds.includes(id) ? (
             <button className='btn favorite-btn' 
               onClick={async () => {
                 await dispatch(addToFavoritesRequest(id));
-                navigate('/dashboard/favorite-characters');
+                //navigate('/dashboard/all-characters');
               }}
             >
               Favorite
             </button>
+            ) : (
+              <button className='btn favorite-btn' 
+              onClick={async () => {
+                 await dispatch(removeFromFavorites(id));
+               // navigate('/dashboard/all-characters');
+              }}
+            >Unfavorite</button>
+              
+            )
           }
         </footer>
       </div>
