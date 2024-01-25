@@ -6,29 +6,27 @@ import customFetch from '../utils/customFetch';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 
-//import { useDashboardContext } from '../pages/DashboardLayout';
+import { useDashboardContext } from '../pages/DashboardLayout';
 
 const LogoutContainer = () => {
   const [showLogout, setShowLogout] = useState(false);
 
   const navigate = useNavigate();
-  // const loader = async () => {
-  //   try {
-  //     const { data } = await customFetch('/users/current-user');
-  //     return data;
-  //   } catch (error) {
-  //     return redirect('/');
-  //   }
-  // };
+  const loader = async () => {
+    try {
+      const { data } = await customFetch('/users/current-user');
+      return data;
+    } catch (error) {
+      return redirect('/');
+    }
+  };
     const logoutUser = async () => {
     navigate('/');
     await customFetch.get('/auth/logout');
     toast.success('Logging out...');
   };
 
- // const { user } = useLoaderData();
-  const user = "john";
-  console.log(user);
+  const { user } = useLoaderData();
 
   return (
     <Wrapper>

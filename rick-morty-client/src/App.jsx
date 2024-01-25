@@ -6,7 +6,7 @@ import { HomeLayout, Landing, Register, Login, DashboardLayout,
 } from './pages';
 import { action as registerAction } from './pages/Register';
 import { action as loginAction } from './pages/Login';
-//import { loader as dashboardLoader } from './pages/DashboardLayout';
+import { loader as dashboardLoader } from './pages/DashboardLayout';
 //import { loader as favoriteCharactersLoader } from './pages/FavoriteCharacters';
 import { Navbar } from "./components";
 import { useSelector, useDispatch } from 'react-redux';
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
       {
         path: '/dashboard',
         element: <DashboardLayout/>,
-        //loader: dashboardLoader,
+        loader: dashboardLoader,
         children: [
           {
             path: 'all-characters',

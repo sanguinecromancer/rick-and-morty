@@ -1,9 +1,9 @@
-//import { useDashboardContext } from '../pages/DashboardLayout';
+import { useDashboardContext } from '../pages/DashboardLayout';
 import links from '../utils/links';
 import { NavLink } from 'react-router-dom';
 
 const NavLinks = () => {
-  //const { user, toggleSidebar } = useDashboardContext();
+  const { user, toggleSidebar } = useDashboardContext();
 
   return (
     <div className='nav-links'>
@@ -14,7 +14,7 @@ const NavLinks = () => {
           <NavLink
             to={path}
             key={text}
-            // onClick={toggleSidebar}
+            onClick={toggleSidebar}
             className='nav-link'
             end
           >
