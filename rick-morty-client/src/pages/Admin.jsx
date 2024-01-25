@@ -4,7 +4,7 @@ import Wrapper from '../assets/wrappers/Dashboard';
 const Admin = () => {
   return (
     <Wrapper>
-      <h2>admin page</h2>
+      <h4>Admin page! (coming..)</h4>
     </Wrapper>
   );
 }

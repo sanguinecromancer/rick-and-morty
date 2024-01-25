@@ -7,19 +7,6 @@ import { useContext, createContext } from 'react';
 import { calculateTotalFavorites, getFavoriteCharacterItems } from "../features/characters/favoriteCharacterSlice";
 import { useSelector, useDispatch } from 'react-redux';
 
-// export const loader = async ({ request }) => {
-//   try {
-//     const { data } = await customFetch.get('/favorite-characters');
-//     console.log(data);
-//     return {
-//       data,
-//     };
-//   } catch (error) {
-//     toast.error(error?.response?.data?.msg);
-//     return error;
-//   }
-// };
-
 
 const FavoriteCharacters = () => {
   return (
@@ -32,5 +19,4 @@ const FavoriteCharacters = () => {
   );
 };
 
-//export const useFavoriteCharactersContext = () => useContext(FavoriteCharactersContext);
 export default FavoriteCharacters;

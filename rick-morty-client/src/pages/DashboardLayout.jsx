@@ -19,20 +19,15 @@ export const loader = async () => {
     const { data } = await customFetch('/users/current-user');
     return data;
   } catch (error) {
+    console.error(error);
     return redirect('/');
   }
 };
 
 
 const DashboardLayout = () => {
- //const { smallSideBarIsOpen } = useSelector((store) => store.dashboard);
-
-  // useEffect(() => {
-  //   dispatch(calculateTotalFavorites());
-  // }, [characterItems]);
   const { user } = useLoaderData();
-  console.log(user);
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   const [showSidebar, setShowSidebar] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme);
 
@@ -71,8 +66,7 @@ const DashboardLayout = () => {
           <div>
             <Navbar />
             <div className='dashboard-page'>
-              {/* <Outlet context={{ user }}/> */}
-                <FavoriteCharacters />  
+              <Outlet context={{ user }}/>
             </div>
           </div>
         </main>

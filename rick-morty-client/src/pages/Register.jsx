@@ -14,6 +14,7 @@ export const action = async ({ request }) => {
     toast.success('Registration successful');
     return redirect('/login');
   } catch (error) {
+    console.error(error);
     toast.error(error?.response?.data?.errors[0] || 'an error has occured');
     return error;
   }

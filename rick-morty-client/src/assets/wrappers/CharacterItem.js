@@ -66,7 +66,7 @@ const Wrapper = styled.article`
     display: flex;
     align-items: center;
   }
-  .edit-btn,
+  .favorite-btn,
   .delete-btn {
     height: 30px;
     font-size: 0.85rem;

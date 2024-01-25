@@ -12,15 +12,8 @@ const LogoutContainer = () => {
   const [showLogout, setShowLogout] = useState(false);
 
   const navigate = useNavigate();
-  const loader = async () => {
-    try {
-      const { data } = await customFetch('/users/current-user');
-      return data;
-    } catch (error) {
-      return redirect('/');
-    }
-  };
-    const logoutUser = async () => {
+
+  const logoutUser = async () => {
     navigate('/');
     await customFetch.get('/auth/logout');
     toast.success('Logging out...');

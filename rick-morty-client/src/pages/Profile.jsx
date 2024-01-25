@@ -1,6 +1,10 @@
+import Wrapper from '../assets/wrappers/Dashboard';
+
 const Profile = () => {
   return (
-    <div>Profile</div>
-  )
+    <Wrapper>
+      <h4>Profile page! (coming.. )</h4>
+    </Wrapper>
+  );
 }
 export default Profile;

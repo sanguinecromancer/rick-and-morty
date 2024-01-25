@@ -1,31 +1,27 @@
 
-let characters = [];
+let allCharacters = [];
 
-export async function loadCharacters(req, res) {
-
+export async function loadAllCharacters() {
   try {
-		characters = [];
+		allCharacters = [];
 		let url = 'http://rickandmortyapi.com/api/character';
 		while (url) {
-				let res = await fetch(url);
-				let { info, results } = await res.json();
-				characters = [...characters, ...results];
-				url = info.next;
+			let res = await fetch(url);
+			let { info, results } = await res.json();
+			allCharacters = [...allCharacters, ...results];
+			url = info.next;
 		}
-		console.log(characters);
-		res.status(200).json({ characters });
-		return characters;
+		console.log('loaded ' + allCharacters.length + ' characters');
+		return allCharacters;
 	} catch (error) {
-		res.status(500).json({ msg: 'server error'});
+		console.errror(error);
 	}
 }
 
-export function getCharacters(offset,  limit) {
-    return characters.slice(offset, offset + limit)
+export function getAllCharacters() {
+	return allCharacters;
 }
 
-function getCharacter(id) {
-    return characters.find(char => char.id == id);
+export function getCharacter(id) {
+	return allCharacters.find(char => char.id == id);
 }
-  
-export default loadCharacters;

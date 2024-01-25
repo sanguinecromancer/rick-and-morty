@@ -4,7 +4,6 @@ import Wrapper from '../assets/wrappers/RegisterAndLoginPage';
 import customFetch from '../utils/customFetch';
 import { toast } from 'react-toastify';
 
-
 export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
@@ -12,7 +11,7 @@ export const action = async ({ request }) => {
   try {
     await customFetch.post('/auth/login', data);
     toast.success('Login successful');
-    return redirect('/dashboard');
+    return redirect('/dashboard/all-characters');
   } catch (error) {
     console.log(error.response.data);
     toast.error(error?.response?.data?.msg || 'An error has occured');
@@ -28,8 +27,8 @@ const Login = () => {
     <Wrapper>
       <Form method='post' className='form'>
         <h4>Login</h4>
-        <FormRow type='email' name='email' defaultValue='john@gmail.com' />
-        <FormRow type='password' name='password' />
+        <FormRow type='text' name='email' defaultValue='john@gmail.com' />
+        <FormRow type='text' name='password' defaultValue="secret123"/>
         <button type='submit' className='btn btn-block' disabled={isSubmitting}>
           {isSubmitting ? 'submitting...' : 'login'}
         </button>

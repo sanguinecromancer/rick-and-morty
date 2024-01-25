@@ -54,7 +54,6 @@ const router = createBrowserRouter([
           {
             path: 'favorite-characters',
             element: <FavoriteCharacters />,
-         //  loader: favoriteCharactersLoader
           },
           {
             path: 'profile',
@@ -72,9 +71,8 @@ const router = createBrowserRouter([
 ])
 
 const App = () => {
-
   const { favoriteCharacterItems, isLoading } = useSelector((store) => store.favoriteCharacterItems);
-  // const { allCharacterItems, isLoading } = useSelector((store) => store.allCharacterItems);
+  const { allCharacterItems, loading } = useSelector((store) => store.allCharacterItems);
    const dispatch = useDispatch();
 
   useEffect(() => {
@@ -85,16 +83,19 @@ const App = () => {
     dispatch(getFavoriteCharacterItems());
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(getAllCharacterItems());
-  // }, []);
+  useEffect(() => {
+    dispatch(getAllCharacterItems());
+  }, []);
+
+  
 
 
-  if (isLoading) {
+  if (loading || isLoading) {
     return <div className='loading'>
       <h2>Loading...</h2>
     </div>
   }
+
 
   return <RouterProvider router={router} />;
   
