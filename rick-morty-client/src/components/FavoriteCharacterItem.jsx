@@ -2,9 +2,9 @@
 import { Link, Form } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/CharacterItem';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeFromFavorites } from '../features/characters/characterSlice';
+import { removeFromFavorites } from '../features/characters/favoriteCharacterSlice';
 
-const CharacterItem = ({_id, createdBy }) => {
+const FavoriteCharacterItem = ({_id, createdBy }) => {
   const dispatch = useDispatch();
   return (
     <Wrapper>
@@ -33,4 +33,4 @@ const CharacterItem = ({_id, createdBy }) => {
   );
 };
 
-export default CharacterItem;
+export default FavoriteCharacterItem;

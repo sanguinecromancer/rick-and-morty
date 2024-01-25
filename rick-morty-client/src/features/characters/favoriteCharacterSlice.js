@@ -14,18 +14,7 @@ export const getFavoriteCharacterItems = createAsyncThunk(
   'characters/getFavoriteCharacterItems',
   async (name, thunkAPI) => {
     try {
-      // console.log(name);
-      // console.log(thunkAPI);
-      // console.log(thunkAPI.getState());
-      // thunkAPI.dispatch(openModal());
-      // const resp = await axios(url);
-
-      // return resp.data;
       const response = await customFetch.get('/favorite-characters');
-      console.log(response);
-      // const { data } = response;
-      // const { favoriteCharacters } = data;
-
       return response.data;
     } catch (error) {
       toast.error(error?.response?.data?.msg);
@@ -35,21 +24,12 @@ export const getFavoriteCharacterItems = createAsyncThunk(
 );
 
 export const getAllCharacterItems = createAsyncThunk(
-  'characters/getFavoriteCharacterItems',
+  'characters/getAllCharacterItems',
   async (name, thunkAPI) => {
     try {
-      // console.log(name);
-      // console.log(thunkAPI);
-      // console.log(thunkAPI.getState());
-      // thunkAPI.dispatch(openModal());
-      // const resp = await axios(url);
-
-      // return resp.data;
+      debugger;
       const response = await customFetch.get('/characters');
       console.log(response);
-      // const { data } = response;
-      // const { favoriteCharacters } = data;
-
       return response.data;
     } catch (error) {
       toast.error(error?.response?.data?.msg);
@@ -58,6 +38,18 @@ export const getAllCharacterItems = createAsyncThunk(
   }
 );
 
+export const removeRequest = async(params) => {
+    try {
+      const response = await customFetch.delete('/favorite-characters/' + params);
+      toast.success(response.data.msg);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response?.data?.msg);
+    }
+  };
+
+
 const characterSlice = createSlice({
   name: 'character',
   initialState,
@@ -65,6 +57,7 @@ const characterSlice = createSlice({
     removeFromFavorites: (state, action) => {
       const itemId = action.payload;
       state.favoriteCharacterItems = state.favoriteCharacterItems.filter((item) => item._id !== itemId);
+      removeRequest(itemId);
     },
     calculateTotalFavorites: (state) => {
       state.total = state.favoriteCharacterItems.length;
@@ -87,8 +80,6 @@ const characterSlice = createSlice({
       });
   },
 });
-
-console.log(characterSlice);
 
 export const { removeFromFavorites, calculateTotalFavorites } = characterSlice.actions;
 

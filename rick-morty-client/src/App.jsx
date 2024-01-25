@@ -10,7 +10,8 @@ import { action as loginAction } from './pages/Login';
 //import { loader as favoriteCharactersLoader } from './pages/FavoriteCharacters';
 import { Navbar } from "./components";
 import { useSelector, useDispatch } from 'react-redux';
-import { calculateTotalFavorites, getFavoriteCharacterItems } from "./features/characters/characterSlice";
+import { calculateTotalFavorites, getFavoriteCharacterItems } from "./features/characters/favoriteCharacterSlice";
+import { getAllCharacterItems } from "./features/characters/allCharactersSlice";
 
 
 export const checkDefaultTheme = () => {
@@ -73,7 +74,8 @@ const router = createBrowserRouter([
 const App = () => {
 
   const { favoriteCharacterItems, isLoading } = useSelector((store) => store.favoriteCharacterItems);
-  const dispatch = useDispatch();
+  // const { allCharacterItems, isLoading } = useSelector((store) => store.allCharacterItems);
+   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(calculateTotalFavorites());
@@ -82,6 +84,11 @@ const App = () => {
   useEffect(() => {
     dispatch(getFavoriteCharacterItems());
   }, []);
+
+  // useEffect(() => {
+  //   dispatch(getAllCharacterItems());
+  // }, []);
+
 
   if (isLoading) {
     return <div className='loading'>

@@ -48,8 +48,5 @@ const dashboardSlice = createSlice({
   }
 });
 
-
-console.log(dashboardSlice);
-
 //export const { openSmallSideBar, closeSmallSideBar } = dashboardSlice.actions;
 export default dashboardSlice.reducer;

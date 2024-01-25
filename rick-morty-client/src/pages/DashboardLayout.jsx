@@ -9,9 +9,10 @@ import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import FavoriteCharacters from '../pages/FavoriteCharacters';
 import CharactersContainer from '../components/CharactersContainer';
+import AllCharactersContainer from '../components/AllCharactersContainer';
 //import { openSmallSideBar, closeSmallSideBar } from '../features/dashboard/dashboardSlice';
 
-const DashboardContext = createContext();
+//const DashboardContext = createContext();
 
 // export const loader = async () => {
 //   try {
@@ -25,6 +26,7 @@ const DashboardContext = createContext();
 
 const DashboardLayout = () => {
  const { smallSideBarIsOpen } = useSelector((store) => store.dashboard);
+
   // useEffect(() => {
   //   dispatch(calculateTotalFavorites());
   // }, [characterItems]);
@@ -70,7 +72,7 @@ const DashboardLayout = () => {
             <Navbar />
             <div className='dashboard-page'>
               {/* <Outlet context={{ user }}/> */}
-              <CharactersContainer />
+               <FavoriteCharacters /> 
             </div>
           </div>
         </main>
