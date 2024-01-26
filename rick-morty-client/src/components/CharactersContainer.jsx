@@ -1,8 +1,9 @@
-import FavoriteCharacterItem from './FavoriteCharacterItem';
+//import FavoriteCharacterItem from './FavoriteCharacterItem';
 import Wrapper from '../assets/wrappers/CharactersContainer';
 import { useSelector, useDispatch } from 'react-redux';
 import { calculateTotalFavorites, getFavoriteCharacterItems } from "../features/characters/favoriteCharacterSlice";
 import { useEffect } from 'react';
+import CharacterItem from './CharacterItem';
 
 
 const CharactersContainer = () => {
@@ -23,7 +24,7 @@ const CharactersContainer = () => {
       <p>Total: {total} </p>
       <div className='characters'>
         {favoriteCharacterItems?.map((character, index) => {
-          return <FavoriteCharacterItem key={index} {...character} />;
+          return <CharacterItem key={index} {...character} />;
         })}
       </div>
     </Wrapper>

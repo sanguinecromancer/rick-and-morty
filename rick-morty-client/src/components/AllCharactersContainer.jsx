@@ -6,10 +6,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const AllCharactersContainer = () => {
      const { allCharacterItems, total } = useSelector((store) => store.allCharacterItems);
-    // const { favoriteCharacterItems, isLoading } = useSelector((store) => store.favoriteCharacterItems);
-    
-    // let allIds = allCharacterItems.map((item) => item.id);
-    // const favoriteIds = favoriteCharacterItems.map((item) => item.id);
 
   const dispatch = useDispatch();
   if (allCharacterItems?.length === 0) {
@@ -22,7 +18,6 @@ const AllCharactersContainer = () => {
 
   return (
     <Wrapper>
-      <p>Total: {total} </p>
       <div className='characters'>
         {allCharacterItems?.map((character, index) => {
           return <CharacterItem key={index} {...character}/>;

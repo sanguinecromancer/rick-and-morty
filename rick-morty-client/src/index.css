@@ -43,6 +43,7 @@ html {
   --red-dark: #842029;
   --green-light: #d1e7dd;
   --green-dark: #0f5132;
+  --red-icons: #e22424
 
   --small-text: 0.875rem;
   --extra-small-text: 0.7em;
@@ -321,11 +322,9 @@ button:disabled {
   color: #f59e0b;
 }
 
-.interview {
-  background: #e0e8f9;
-  color: #647acb;
+.Alive {
+  background: #05a75b;
 }
-.declined {
-  background: #ffeeee;
-  color: #d66a6a;
+.Dead {
+  background: #e22424;
 }
