@@ -6,11 +6,12 @@ import { Navbar, BigSidebar, SmallSidebar } from '../components';
 import { checkDefaultTheme } from '../App';
 import { useState, createContext, useContext } from 'react';
 import { toast } from 'react-toastify';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import FavoriteCharacters from '../pages/FavoriteCharacters';
 import CharactersContainer from '../components/CharactersContainer';
 import AllCharactersContainer from '../components/AllCharactersContainer';
-//import { openSmallSideBar, closeSmallSideBar } from '../features/dashboard/dashboardSlice';
+import { calculateTotalFavorites, getFavoriteCharacterItems } from "../features/characters/favoriteCharacterSlice";
+import { getAllCharacterItems } from "../features/characters/allCharactersSlice";
 
 const DashboardContext = createContext();
 
@@ -30,6 +31,29 @@ const DashboardLayout = () => {
   const navigate = useNavigate();
   const [showSidebar, setShowSidebar] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme);
+
+   const { favoriteCharacterItems, isLoading } = useSelector((store) => store.favoriteCharacterItems);
+  const { allCharacterItems, loading } = useSelector((store) => store.allCharacterItems);
+
+   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(calculateTotalFavorites());
+  }, [favoriteCharacterItems]);
+
+  useEffect(() => {
+    dispatch(getFavoriteCharacterItems());
+  }, []);
+
+  useEffect(() => {
+    dispatch(getAllCharacterItems());
+  }, []);
+
+  if (loading || isLoading) {
+    return <div className='loading'>
+      <h2>Loading...</h2>
+    </div>
+  }
 
   const toggleDarkTheme = () => {
     const newDarkTheme = !isDarkTheme;

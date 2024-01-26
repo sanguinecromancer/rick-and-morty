@@ -2,17 +2,13 @@
 import { Link } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/LandingPage';
 import main from '../assets/images/main.svg';
-import styled from 'styled-components';
-
 
 const Landing = () => {
   return (
     <Wrapper>
       <nav>
-        {/* <img src={logo} alt='rick-morty' className='logo' /> */}
       </nav>
       <div className='container page'>
-        {/* info */}
         <div className='info'>
           <h1>
             Rick and Morty app

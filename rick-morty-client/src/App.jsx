@@ -1,21 +1,13 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { useEffect } from 'react';
 import { HomeLayout, Landing, Register, Login, DashboardLayout,
- Error, FavoriteCharacters, AllCharacters, Profile,
- Stats, Admin
-} from './pages';
+ Error, FavoriteCharacters, AllCharacters, Profile, Admin} from './pages';
 import { action as registerAction } from './pages/Register';
 import { action as loginAction } from './pages/Login';
 import { loader as dashboardLoader } from './pages/DashboardLayout';
-//import { loader as favoriteCharactersLoader } from './pages/FavoriteCharacters';
-import { Navbar } from "./components";
-import { useSelector, useDispatch } from 'react-redux';
-import { calculateTotalFavorites, getFavoriteCharacterItems } from "./features/characters/favoriteCharacterSlice";
-import { getAllCharacterItems } from "./features/characters/allCharactersSlice";
-
 
 export const checkDefaultTheme = () => {
-  const isDarkTheme = localStorage.getItem('darkTheme') === 'true';
+  const defaultDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const isDarkTheme = (localStorage.getItem('darkTheme') || String(defaultDarkMode)) === 'true';
   document.body.classList.toggle('dark-theme', isDarkTheme);
   return isDarkTheme;
 };
@@ -71,33 +63,6 @@ const router = createBrowserRouter([
 ])
 
 const App = () => {
-  const { favoriteCharacterItems, isLoading } = useSelector((store) => store.favoriteCharacterItems);
-  const { allCharacterItems, loading } = useSelector((store) => store.allCharacterItems);
-   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(calculateTotalFavorites());
-  }, [favoriteCharacterItems]);
-
-  useEffect(() => {
-    dispatch(getFavoriteCharacterItems());
-  }, []);
-
-  useEffect(() => {
-    dispatch(getAllCharacterItems());
-  }, []);
-
-  
-
-
-  if (loading || isLoading) {
-    return <div className='loading'>
-      <h2>Loading...</h2>
-    </div>
-  }
-
-
   return <RouterProvider router={router} />;
-  
 }
 export default App

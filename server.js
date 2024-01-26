@@ -14,7 +14,6 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-
 app.use(cookieParser());
 app.use(express.json());
 
@@ -31,8 +30,6 @@ import { authenticateUser } from './middleware/authMiddleware.js';
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1', authenticateUser, characterRouter);
 app.use('/api/v1/users', authenticateUser, userRouter);
-
-
 
 // 404 response
 

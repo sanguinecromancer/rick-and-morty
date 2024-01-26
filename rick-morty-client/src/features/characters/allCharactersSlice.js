@@ -26,7 +26,6 @@ const allCharactersSlice = createSlice({
   name: 'character',
   initialState,
   reducers: {
-
   },
   extraReducers: (builder) => {
     builder

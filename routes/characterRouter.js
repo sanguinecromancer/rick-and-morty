@@ -21,4 +21,4 @@ router.post('/favorite-characters/:id', addToFavorites);
 router.get('/favorite-characters/:id', validateIdParam, getFavoriteCharacter);
 router.delete('/favorite-characters/:id', removeFromFavorites);
 
- export default router;
+export default router;

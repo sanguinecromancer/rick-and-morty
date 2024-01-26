@@ -3,8 +3,6 @@ import { FaAlignLeft } from 'react-icons/fa';
 import { useDashboardContext } from '../pages/DashboardLayout';
 import LogoutContainer from './LogoutContainer';
 import ThemeToggle from './ThemeToggle';
-//import { useSelector, useDispatch } from 'react-redux';
-//import { openSmallSideBar, closeSmallSideBar } from '../features/dashboard/dashboardSlice';
 
 const Navbar = () => {
   // const dispatch = useDispatch();
