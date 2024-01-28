@@ -8,7 +8,6 @@ import { useState, createContext, useContext } from 'react';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import { getFavoriteCharacterItems } from "../features/characters/favoriteCharacterSlice";
-import { getAllCharacterItems } from "../features/characters/allCharactersSlice";
 
 const DashboardContext = createContext();
 
@@ -29,7 +28,6 @@ const DashboardLayout = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme);
 
   const { isLoading } = useSelector((store) => store.favoriteCharacterItems);
-  const { loading } = useSelector((store) => store.allCharacterItems);
 
   const dispatch = useDispatch();
 
@@ -37,11 +35,7 @@ const DashboardLayout = () => {
     dispatch(getFavoriteCharacterItems());
   }, []);
 
-  useEffect(() => {
-    dispatch(getAllCharacterItems());
-  }, []);
-
-  if (loading || isLoading) {
+  if (isLoading) {
     return <div className='loading'>
       <h2>Loading...</h2>
     </div>

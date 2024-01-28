@@ -20,5 +20,10 @@ const Wrapper = styled.section`
       gap: 2rem;
     }
   }
+  .pagination-bar {
+    display: flex;
+    margin: 20px 0px;
+    justify-content: space-between;
+  }
 `;
 export default Wrapper;

@@ -28,7 +28,6 @@ export const addToFavoritesRequest = createAsyncThunk(
     try {
       const response = await customFetch.post('/favorite-characters/' + params);
       toast.success(response.data.msg);
-      console.log(response);
       await thunkAPI.dispatch(getFavoriteCharacterItems());
       return response.data;
     } catch (error) {
