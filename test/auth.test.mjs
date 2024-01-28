@@ -28,7 +28,7 @@ let authenticate = async () => {
   });
 };
 
-test('chracter API', async () => {
+test('character API', async () => {
   let res = await fetch('http://localhost:5100/api/v1/characters', {
     headers: { cookie: authCookie }
   });

@@ -17,6 +17,8 @@ export const checkDefaultTheme = () => {
   return isDarkTheme;
 };
 
+checkDefaultTheme();
+
 const router = createBrowserRouter([
   {
     path: '/',

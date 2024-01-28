@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 const initialState = {
   favoriteCharacterItems: [],
   total: 0,
-  isLoading: true,
+  isLoading: false,
   favoriteIds: []
 };
 
@@ -59,9 +59,6 @@ const characterSlice = createSlice({
   name: 'character',
   initialState,
   reducers: {
-    calculateTotalFavorites: (state) => {
-      state.total = state.favoriteCharacterItems.length;
-    },
     getIdsOfFavorites: (state) => {
       state.favoriteIds = state.favoriteCharacterItems.map((item) => item.id);
     }
@@ -76,11 +73,14 @@ const characterSlice = createSlice({
         let favorites = action.payload.favoriteCharacters;
         state.favoriteCharacterItems = favorites;
         state.favoriteIds = favorites.map((item) => item.id);
-
       })
+      .addCase(getFavoriteCharacterItems.rejected, (state, action) => {
+        console.log(action);
+        state.isLoading = false;
+      });
   },
 });
 
-export const { calculateTotalFavorites, getIdsOfFavorites } = characterSlice.actions;
+export const { getIdsOfFavorites } = characterSlice.actions;
 
 export default characterSlice.reducer;

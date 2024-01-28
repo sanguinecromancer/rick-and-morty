@@ -7,7 +7,7 @@ import { checkDefaultTheme } from '../App';
 import { useState, createContext, useContext } from 'react';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
-import { calculateTotalFavorites, getFavoriteCharacterItems } from "../features/characters/favoriteCharacterSlice";
+import { getFavoriteCharacterItems } from "../features/characters/favoriteCharacterSlice";
 import { getAllCharacterItems } from "../features/characters/allCharactersSlice";
 
 const DashboardContext = createContext();
@@ -22,21 +22,16 @@ export const loader = async () => {
   }
 };
 
-
 const DashboardLayout = () => {
   const { user } = useLoaderData();
   const navigate = useNavigate();
   const [showSidebar, setShowSidebar] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme);
 
-   const { favoriteCharacterItems, isLoading } = useSelector((store) => store.favoriteCharacterItems);
+  const { isLoading } = useSelector((store) => store.favoriteCharacterItems);
   const { loading } = useSelector((store) => store.allCharacterItems);
 
-   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(calculateTotalFavorites());
-  }, [favoriteCharacterItems]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getFavoriteCharacterItems());
@@ -80,18 +75,18 @@ const DashboardLayout = () => {
       }}
     >
  
-      <Wrapper>
-        <main className='dashboard'>
-         <SmallSidebar user ShowSidebar />
-           <BigSidebar />
-          <div>
-            <Navbar />
-            <div className='dashboard-page'>
-              <Outlet context={{ user }}/>
+        <Wrapper>
+          <main className='dashboard'>
+          <SmallSidebar user ShowSidebar />
+            <BigSidebar />
+            <div>
+              <Navbar />
+              <div className='dashboard-page'>
+                <Outlet context={{ user }}/>
+              </div>
             </div>
-          </div>
-        </main>
-      </Wrapper>
+          </main>
+        </Wrapper>
       </DashboardContext.Provider>
   );
 };

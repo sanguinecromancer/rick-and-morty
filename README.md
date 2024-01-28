@@ -1,8 +1,12 @@
+Hello :) This is Zeynep and my assignment can be built this way:
+
 From the rick-morty directory:
     npm run setup-project
     npm run dev
 
 This will create a both frontend (localhost:5173) and backend (port:5100) server.
+
+------FEATURES--------------
 
 Login: I have created a profile and hardcoded sample email and password, but it is possible to create your own account.
 
@@ -10,8 +14,13 @@ Database: I use MongoDB database with Mongoose, the database is in Atlas cloud a
 
 CSS: I did not use a library for CSS, however I re-used some base styles that I used before in another project. They are not created from scratch. Under src/assets/wrappers I have created wrapper components for styling, with help of the library: styled-components.
 
+API call from express to the Rick & Morty API can be found in models/CharactersModel.js
+
 Dark mode / light mode: Can be switched from moon or sun icon in the navigation bar.
 
 Test: I have added an authorization test under test/auth.test.mjs. It can be run by "npm run test"
 
 React: I tried to use new features of react router, such as FormData API.
+
+Error message toaster: I make use of the library called react-toastify.
+
