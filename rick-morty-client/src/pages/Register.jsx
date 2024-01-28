@@ -28,9 +28,9 @@ const Register = () => {
     <Wrapper>
       <Form method='post' className='form'>
         <h4>Register</h4>
-        <FormRow type="text" name="name" defaultValue="dwight" />
-        <FormRow type="email" name="email" defaultValue="dwight@office.com" />
-        <FormRow type="password" name="password" defaultValue="secret123" />
+        <FormRow type="text" name="name" />
+        <FormRow type="email" name="email" />
+        <FormRow type="password" name="password" />
         <button type='submit' className='btn btn-block' disabled={isSubmitting}>
           {isSubmitting ? 'submitting...' : 'submit'}
         </button>

@@ -27,8 +27,8 @@ const Login = () => {
     <Wrapper>
       <Form method='post' className='form'>
         <h4>Login</h4>
-        <FormRow type='text' name='email' defaultValue='john@gmail.com' />
-        <FormRow type='password' name='password' defaultValue="secret123"/>
+        <FormRow type='text' name='email' />
+        <FormRow type='password' name='password'/>
         <button type='submit' className='btn btn-block' disabled={isSubmitting}>
           {isSubmitting ? 'submitting...' : 'login'}
         </button>

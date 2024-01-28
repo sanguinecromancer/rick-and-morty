@@ -51,6 +51,8 @@ bcrypt.hash(password, salt) - We calculate hash value using a one-way hash funct
 jasonwebtoken: We create a JWT with this library, when user logs in, they will receive a JWT token. For user to access resources later,
 we will be looking for this JWT. We send everything with HTTP cookies, which is a secure way how to communicate back and forth.
 
+Axios: great library for HTTP requests.
+
 
 
 
