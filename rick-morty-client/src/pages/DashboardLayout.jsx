@@ -7,9 +7,6 @@ import { checkDefaultTheme } from '../App';
 import { useState, createContext, useContext } from 'react';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
-import FavoriteCharacters from '../pages/FavoriteCharacters';
-import CharactersContainer from '../components/CharactersContainer';
-import AllCharactersContainer from '../components/AllCharactersContainer';
 import { calculateTotalFavorites, getFavoriteCharacterItems } from "../features/characters/favoriteCharacterSlice";
 import { getAllCharacterItems } from "../features/characters/allCharactersSlice";
 
@@ -33,7 +30,7 @@ const DashboardLayout = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme);
 
    const { favoriteCharacterItems, isLoading } = useSelector((store) => store.favoriteCharacterItems);
-  const { allCharacterItems, loading } = useSelector((store) => store.allCharacterItems);
+  const { loading } = useSelector((store) => store.allCharacterItems);
 
    const dispatch = useDispatch();
 

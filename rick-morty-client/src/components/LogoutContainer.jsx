@@ -1,12 +1,9 @@
 import { FaUserCircle, FaCaretDown } from 'react-icons/fa';
 import Wrapper from '../assets/wrappers/LogoutContainer';
 import { useState } from 'react';
-import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import customFetch from '../utils/customFetch';
 import { toast } from 'react-toastify';
-import { useSelector } from 'react-redux';
-
-import { useDashboardContext } from '../pages/DashboardLayout';
 
 const LogoutContainer = () => {
   const [showLogout, setShowLogout] = useState(false);

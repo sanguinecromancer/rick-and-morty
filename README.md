@@ -12,5 +12,6 @@ CSS: I did not use a library for CSS, however I re-used some base styles that I 
 
 Dark mode / light mode: Can be switched from moon or sun icon in the navigation bar.
 
+Test: I have added an authorization test under test/auth.test.mjs. It can be run by "npm run test"
 
 React: I tried to use new features of react router, such as FormData API.

@@ -6,9 +6,10 @@
   "type": "module",
   "scripts": {
     "setup-project": "npm i && cd rick-morty-client && npm i",
-    "server": "nodemon server",
+    "server": "nodemon start-server",
     "client": "cd rick-morty-client && npm run dev",
-    "dev": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\""
+    "dev": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\"",
+    "test": "node --test"
   },
   "keywords": [],
   "author": "",

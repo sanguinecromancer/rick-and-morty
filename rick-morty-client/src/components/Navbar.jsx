@@ -5,23 +5,18 @@ import LogoutContainer from './LogoutContainer';
 import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => {
-  // const dispatch = useDispatch();
-  // const x = useSelector((store) => store);
-  // console.log(x);
 
    const { toggleSidebar } = useDashboardContext();
   return (
     <Wrapper>
       <div className='nav-center'>
         <button type='button' 
-        className='toggle-btn'  
-        // onClick={() => dispatch(openSmallSideBar())}
-        onClick={toggleSidebar}
+          className='toggle-btn'  
+          onClick={toggleSidebar}
         >
           <FaAlignLeft />
         </button>
         <div>
-          {/* <h3>Rick and morty</h3> */}
           <h4 className='logo-text'>dashboard</h4>
         </div>
         <div className='btn-container'>

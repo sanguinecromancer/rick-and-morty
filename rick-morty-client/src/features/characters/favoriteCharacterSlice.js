@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import customFetch from '../../utils/customFetch';
-import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 const initialState = {
@@ -79,29 +78,6 @@ const characterSlice = createSlice({
         state.favoriteIds = favorites.map((item) => item.id);
 
       })
-      /*
-      .addCase(getFavoriteCharacterItems.rejected, (state, action) => {
-        state.isLoading = false;
-      })
-      .addCase(addToFavoritesRequest.pending, (state, action) => {
-        state.loading = true;
-      })
-      .addCase(addToFavoritesRequest.fulfilled, (state, action) => {
-        state.loading = false;
-      })
-      .addCase(addToFavoritesRequest.rejected, (state, action) => {
-        state.loading = false;
-      })
-      .addCase(removeFromFavorites.pending, (state, action) => {
-        state.loading = true;
-      })
-      .addCase(removeFromFavorites.fulfilled, (state, action) => {
-        state.loading = false;
-      })
-      .addCase(removeFromFavorites.rejected, (state, action) => {
-        state.loading = false;
-      })
-      */
   },
 });
 

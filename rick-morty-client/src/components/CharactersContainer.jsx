@@ -1,15 +1,10 @@
-//import FavoriteCharacterItem from './FavoriteCharacterItem';
 import Wrapper from '../assets/wrappers/CharactersContainer';
-import { useSelector, useDispatch } from 'react-redux';
-import { calculateTotalFavorites, getFavoriteCharacterItems } from "../features/characters/favoriteCharacterSlice";
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import CharacterItem from './CharacterItem';
-
 
 const CharactersContainer = () => {
 
-  const { favoriteCharacterItems, total } = useSelector((store) => store.favoriteCharacterItems);
-  const dispatch = useDispatch();
+  const { favoriteCharacterItems } = useSelector((store) => store.favoriteCharacterItems);
  
   if (favoriteCharacterItems?.length === 0) {
     return (
@@ -21,7 +16,6 @@ const CharactersContainer = () => {
 
   return (
     <Wrapper>
-      <p>Total: {total} </p>
       <div className='characters'>
         {favoriteCharacterItems?.map((character, index) => {
           return <CharacterItem key={index} {...character} />;

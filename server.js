@@ -8,7 +8,7 @@ import mongoose from 'mongoose';
 import { body, validationResult } from 'express-validator';
 import { validateTest } from './middleware/validationMiddleware.js';
 import cookieParser from 'cookie-parser';
-
+import { loadAllCharacters } from './models/CharactersModel.js';
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -46,12 +46,34 @@ app.use((err, req, res, next) => {
 
 const port = process.env.PORT || 5100;
 
-try {
-  await mongoose.connect(process.env.MONGO_URL);
-  app.listen(port, () => {
-    console.log(`server running on PORT ${port}....`);
-  });
-} catch (error) {
-  console.log(error);
-  process.exit(1);
-}
+
+// try {
+//   await mongoose.connect(process.env.MONGO_URL);
+//   app.listen(port, () => {
+//     console.log(`server running on PORT ${port}....`);
+//   });
+// } catch (error) {
+//   console.log(error);
+//   process.exit(1);
+// }
+let server = undefined;
+
+let start = async () => {
+  try {
+    await loadAllCharacters();
+    await mongoose.connect(process.env.MONGO_URL);
+    server = app.listen(port, () => {
+      console.log(`server running on PORT ${port}....`);
+    });
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
+
+let stop = () => {
+  server?.close();
+  mongoose.connection.close();
+};
+
+export { start, stop };

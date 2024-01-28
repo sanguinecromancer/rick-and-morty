@@ -1,17 +1,13 @@
 
-import { Link, Form } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/CharacterItem';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToFavoritesRequest, removeFromFavorites } from '../features/characters/favoriteCharacterSlice';
-//import { favoriteIds } from '../features/characters/favoriteCharacterSlice';
-import { useNavigate } from 'react-router-dom';
 import { IoHeartOutline, IoHeartSharp } from "react-icons/io5";
 
 
 const CharacterItem = ({id, name, image, species, status, gender}) => {
   const { favoriteIds } = useSelector((store) => store.favoriteCharacterItems);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   return (
     <Wrapper>
@@ -44,7 +40,6 @@ const CharacterItem = ({id, name, image, species, status, gender}) => {
             <button className='btn favorite-btn' 
               onClick={async () => {
                 await dispatch(addToFavoritesRequest(id));
-                //navigate('/dashboard/all-characters');
           }}
             >
               Favorite
@@ -53,7 +48,6 @@ const CharacterItem = ({id, name, image, species, status, gender}) => {
               <button className='btn favorite-btn' 
               onClick={async () => {
                  await dispatch(removeFromFavorites(id));
-               // navigate('/dashboard/all-characters');
               }}
             >Unfavorite</button>
               

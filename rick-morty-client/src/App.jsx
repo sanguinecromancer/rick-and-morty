@@ -6,13 +6,16 @@ import { action as loginAction } from './pages/Login';
 import { loader as dashboardLoader } from './pages/DashboardLayout';
 
 export const checkDefaultTheme = () => {
-  const defaultDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const isDarkTheme = (localStorage.getItem('darkTheme') || String(defaultDarkMode)) === 'true';
+
+  // It's possible to check OS preferences with this code
+  // const defaultDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  // const isDarkTheme = (localStorage.getItem('darkTheme') || String(defaultDarkMode)) === 'true';
+
+  // But we want to set dark theme unless preferred otherwise:
+  const isDarkTheme = true;
   document.body.classList.toggle('dark-theme', isDarkTheme);
   return isDarkTheme;
 };
-
-checkDefaultTheme();
 
 const router = createBrowserRouter([
   {

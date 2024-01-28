@@ -3,13 +3,12 @@ import links from '../utils/links';
 import { NavLink } from 'react-router-dom';
 
 const NavLinks = () => {
-  const { user, toggleSidebar } = useDashboardContext();
+  const { toggleSidebar } = useDashboardContext();
 
   return (
     <div className='nav-links'>
       {links.map((link) => {
         const { text, path, icon } = link;
-        // admin user
         return (
           <NavLink
             to={path}
